@@ -10,6 +10,7 @@ pipeline {
             steps {
                 script {
                     dockerImage = docker.build("app:${env.BUILD_ID}")
+                    sh 'docker build -t app .'
                 }
             }
         }
