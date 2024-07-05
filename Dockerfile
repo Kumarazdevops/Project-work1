@@ -9,8 +9,7 @@ RUN docker build -t app .
 
 Run docker run -d --name app-dev -p 3000:3000 app
 
-Run a container for testing
-docker run -d --name app-test -p 3001:3000 app
+Run docker run -d --name app-test -p 3001:3000 app
 
 Run docker run -d --name app-prod -p 80:3000 app
 RUN docker run -d --name app-dev -p 3000:3000 -v $(pwd)/data:/app/data app
