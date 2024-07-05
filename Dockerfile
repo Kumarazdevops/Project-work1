@@ -6,6 +6,7 @@ CMD ["npm", "start"]
 
 
 
+
 # Build the Docker image
 docker build -t app .
 
