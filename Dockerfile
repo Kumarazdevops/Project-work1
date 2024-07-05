@@ -4,7 +4,7 @@ COPY . .
 RUN npm install
 CMD ["npm", "start"]
 
-#Build the Docker image
+
 RUN docker build -t app .
 
 Run docker run -d --name app-dev -p 3000:3000 app
