@@ -3,7 +3,7 @@
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/user/repo.git'
+                git branch : 'main' url: 'https://github.com/user/repo.git'
             }
         }
         stage('Build Docker Image') {
