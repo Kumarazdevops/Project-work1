@@ -1,9 +1,4 @@
  pipeline {
-  agent {
-         docker {
-              sh 'docker build -t app .'
-         }
-  }
     agent any
     stages {
         stage('Clone Repository') {
