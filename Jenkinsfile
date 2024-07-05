@@ -32,10 +32,10 @@
                     dockerImage.push('app:latest')
                     sh 'docker-compose up -d'
                     sh 'docker run -d --name app-prod -p 80:3000 myapp'
-                    sh 'docker run -d --name cont1.1 -p 3000:3000 -v $(pwd)/data:/app/data app
+                    sh 'docker run -d --name cont1.1 -p 3000:3000 -v /data:/app/data app
                     sh 'docker network create app-network'
                     sh 'docker run -d --name cont1.1 --network app-network -p 3000:3000 app'
-                    sh 'docker run -d --name db --network app-network -e POSTGRES_PASSWORD=mysecretpassword postgres'
+                    
 '
                 }
             }
