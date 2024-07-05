@@ -7,16 +7,16 @@ CMD ["npm", "start"]
 
 
 
-# Build the Docker image
+Build the Docker image
 docker build -t app .
 
-# Run a container for development
+Run a container for development
 docker run -d --name app-dev -p 3000:3000 app
 
-# Run a container for testing
+Run a container for testing
 docker run -d --name app-test -p 3001:3000 app
 
-# Run a container for production
+Run a container for production
 docker run -d --name app-prod -p 80:3000 app
 
 
