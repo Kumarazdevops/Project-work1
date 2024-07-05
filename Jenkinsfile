@@ -1,5 +1,7 @@
  pipeline {
     agent any
+
+  
     stages {
         stage('Clone Repository') {
             steps {
@@ -9,7 +11,8 @@
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("app:${env.BUILD_ID}")
+                    sh 'docker build -t aap .'
+                    sh 'docker run -d --name app-dev -p 3000:3000 app'
                 }
             }
         }
@@ -17,7 +20,7 @@
             steps {
                 script {
                     dockerImage.inside {
-                        sh 'run-tests.sh'
+                        sh 'docker run -d --name app-test -p 3001:3000 app.sh'
                     }
                 }
             }
@@ -26,7 +29,7 @@
             steps {
                 script {
                     dockerImage.push('app:latest')
-                    sh 'docker-compose up -d'
+                    sh 'docker run -d --name app-prod -p 80:3000 app'
                 }
             }
         }
