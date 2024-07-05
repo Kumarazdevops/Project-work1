@@ -3,7 +3,7 @@
     stages {
         stage('Clone Repository') {
             steps {
-                git branch : 'main', url: 'https://github.com/Kumarazdevops/Project-work1.git'
+                git 'https://github.com/Kumarazdevops/Project-work1.git'
             }
         }
         stage('Build Docker Image') {
