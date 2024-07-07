@@ -1,6 +1,6 @@
 FROM node:14
 WORKDIR /app
-COPY test.js ./
+COPY test.js .
 RUN npm install
 CMD ["npm", "start"]
 
