@@ -7,14 +7,13 @@
               git clone : 'main', url: 'https://github.com/Kumarazdevops/project-work1.git'
             }
       }
-        stage('Build') {
+      stage('Build') {
             steps {
                 script {
                     docker.build('myapp:latest')
                 }
             }
         }
-
         stage('Test') {
             steps {
                 script {
@@ -24,7 +23,6 @@
                 }
             }
         }
-
         stage('Deploy') {
             steps {
                 script {
@@ -35,7 +33,6 @@
             }
         }
     }
-
     post {
         always {
             cleanWs()
