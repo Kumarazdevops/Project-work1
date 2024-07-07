@@ -1,5 +1,4 @@
 docker build -t myapp:latest .
-  docker build -t myapp:latest .
 docker run -d -p 3000:3000 --name myapp-dev myapp:latest
 docker run -d --name myapp-test myapp:latest npm test
 docker run -d -p 80:3000 --name myapp-prod myapp:latest
