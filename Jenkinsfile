@@ -1,14 +1,14 @@
 pipeline {
     agent any
+    stage('Initialize'){
+        def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
     stages {
         stage('Clone Repository') {
             steps {
                 git branch : 'main', url: 'https://github.com/Kumarazdevops/Project-work1.git'
             }
-        }
-        stage('Initialize'){
-        def dockerHome = tool 'myDocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
         }
         stage('Build Docker Image') {
             steps {
