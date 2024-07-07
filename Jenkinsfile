@@ -2,6 +2,11 @@
     agent any
 
     stages {
+      stage('clone){
+            steps{
+              git clone : 'main', url: 'https://github.com/Kumarazdevops/project-work1.git'
+            }
+      }
         stage('Build') {
             steps {
                 script {
@@ -23,7 +28,7 @@
         stage('Deploy') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-credentials') {
+                    docker.withRegistry('https://hub.docker.com/repositories/sravankumar0338', 'docker-credentials') {
                         docker.image('myapp:latest').push('latest')
                     }
                 }
