@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     dockerImage.inside {
-                        sh 'run-tests.sh'
+                        bat 'run-tests.sh'
                     }
                 }
             }
