@@ -1,39 +1,39 @@
-pipeline {
+  pipeline {
     agent any
-    stage('Initialize'){
-        def dockerHome = tool 'Docker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-    }
+
     stages {
-        stage('Clone Repository') {
-            steps {
-                git branch : 'main', url: 'https://github.com/Kumarazdevops/Project-work1.git'
-            }
-        }
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build("app:${env.BUILD_ID}")
+                    docker.build('myapp:latest')
                 }
             }
         }
+
         stage('Test') {
             steps {
                 script {
-                    dockerImage.inside {
-                        bat 'run-tests.sh'
+                    docker.image('myapp:latest').inside {
+                        sh 'npm test'
                     }
                 }
             }
         }
+
         stage('Deploy') {
             steps {
                 script {
-                    dockerImage.push('app:latest')
-                    sh 'docker-compose up -d'
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-credentials') {
+                        docker.image('myapp:latest').push('latest')
+                    }
                 }
             }
         }
     }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
 }
- 
