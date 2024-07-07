@@ -2,7 +2,7 @@
     agent any
 
     stages {
-      stage('clone){
+      stage('clone'){
             steps{
               git clone : 'main', url: 'https://github.com/Kumarazdevops/project-work1.git'
             }
