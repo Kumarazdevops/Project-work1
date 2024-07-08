@@ -1,19 +1,20 @@
-  pipeline {
+ pipeline {
     agent any
 
     stages {
       stage('clone'){
-            steps{
-              git clone : 'main', url: 'https://github.com/Kumarazdevops/project-work1.git'
-            }
+        steps{
+          git branch : 'main', url: ''
+        }
       }
-      stage('Build') {
+        stage('Build') {
             steps {
                 script {
                     docker.build('myapp:latest')
                 }
             }
         }
+
         stage('Test') {
             steps {
                 script {
@@ -23,16 +24,18 @@
                 }
             }
         }
+
         stage('Deploy') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/repositories/sravankumar0338', 'docker-credentials') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-credentials') {
                         docker.image('myapp:latest').push('latest')
                     }
                 }
             }
         }
     }
+
     post {
         always {
             cleanWs()
