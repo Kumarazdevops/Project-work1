@@ -4,7 +4,7 @@
     stages {
       stage('clone'){
         steps{
-          git branch : 'main', url: ''
+          git branch : 'main', url: 'https://github.com/Kumarazdevops/project-work1.git'
         }
       }
         stage('Build') {
