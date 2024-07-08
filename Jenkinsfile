@@ -10,7 +10,7 @@
         stage('Build') {
             steps {
                 script {
-                    docker.build('myapp:latest')
+                    docker.build('app:latest')
                 }
             }
         }
@@ -18,7 +18,7 @@
         stage('Test') {
             steps {
                 script {
-                    docker.image('myapp:latest').inside {
+                    docker.image('app:latest').inside {
                         sh 'npm test'
                     }
                 }
@@ -28,8 +28,8 @@
         stage('Deploy') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-credentials') {
-                        docker.image('myapp:latest').push('latest')
+                    docker.withRegistry('https://hub.docker.com/repositories/sravankumar0338', 'docker-credentials') {
+                        docker.image('app:latest').push('latest')
                     }
                 }
             }
