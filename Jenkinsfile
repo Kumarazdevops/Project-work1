@@ -16,6 +16,7 @@
             steps {
                 script {
                     docker.build('app:latest')
+                    sh 'docker run -t app:latest .'
                 }
             }
         }
